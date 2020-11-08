@@ -8,12 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/watawata14341/node-demo.git"
+    "url": "git+ssh://git@github.com/watawata14341/node-demo.git"
   },
   "author": "",
   "license": "MIT",
   "private": "true",
   "dependencies": {
+    "ejs": "^3.1.5",
     "express": "^4.17.1"
   }
 }
