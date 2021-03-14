@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended: false}));
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'W2qbxt4i',
     database: 'list_app'
 });
 
@@ -78,6 +78,32 @@ app.post('/update/:id', (req, res) => {
       res.redirect('/index');
     }
   );
+});
+
+app.get('/list', (req, res) => {
+  connection.query(
+    'SELECT * FROM articles',
+    (error, results) => {
+      // EJSファイルに渡すデータとプロパティ名を確認してください
+      res.render('list.ejs', { articles: results });
+    }
+  );
+});
+
+app.get('/article/:id', (req, res) => {
+  const id = req.params.id;
+  connection.query(
+    'SELECT * FROM articles WHERE id = ?',
+    [id],
+    (error, results) => {
+      // EJSファイルに渡すデータとプロパティ名を確認してください
+      res.render('article.ejs', { article: results[0] });
+    }
+  );
+});
+
+app.get('/login', (req, res) => {
+  res.render('login.ejs');
 });
 
 app.listen(3000);
